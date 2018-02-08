@@ -1,10 +1,18 @@
-# Bayasi
-BayasiegeBot for twitter
+# Bayasi Bot
+BayasiegeBot for twitter  
+Tweet Today Stats  
+*Useing R6STATS-API* do not support by public  
 
-# requirements
-requests
-
-# R6STATS JSON
+## requirements
+### 1. requests
+pip install requests  
+### 2. none
+^^
+## API
+[R6STATS](https://r6stats.com/)  
+## R6STATS JSON
+it is sample
+~~~
 {'player':{  
     'username': 'syababa',  
     'platform': 'uplay',  
@@ -51,3 +59,4 @@ requests
         }  
     }  
 }}  
+~~~
