@@ -6,8 +6,8 @@ Tweet Today Stats
 ## requirements
 ### 1. requests
 pip install requests  
-### 2. none
-^^
+### 2. requests-oauthlib
+pip install requests-oathlib
 ## API
 [R6STATS](https://r6stats.com/)  
 ## R6STATS JSON

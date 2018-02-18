@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*- 
 import requests
 import json
 import time
@@ -13,23 +14,31 @@ username = "syababa"
 platform = "uplay"
 
 def requestPlayer(username, platform):
-    r = requests.get('https://api.r6stats.com/api/v1/players/{}?platform={}'.format(username, platform))
-    dict_ = r.json()
+    try:
+        r = requests.get('https://api.r6stats.com/api/v1/players/{}?platform={}'.format(username, platform))
+        dict_ = r.json()
 
-    if r.status_code == 404:
-        return None
-    else:
-        return dict_
+        if r.status_code == 404:
+            return None
+        else:
+            return dict_
+    except:
+        print("--- REQUEST ERRER ---")
 
 def Siege():
     data = requestPlayer(username,platform)
-    player = data['player']
-    d_win   = player['stats']['ranked']['wins'] - before['stats']['ranked']['wins']
-    d_loss  = player['stats']['ranked']['losses'] - before['stats']['ranked']['losses']
-    d_kill  = player['stats']['ranked']['kills'] - before['stats']['ranked']['kills']
-    d_death = player['stats']['ranked']['deaths'] - before['stats']['ranked']['deaths']
-    d_head  = player['stats']['overall']['headshots'] - before['stats']['overall']['headshots']
-    d_time  = player['stats']['ranked']['playtime'] - before['stats']['ranked']['playtime']
+    try:
+        player = data['player']
+        d_win   = player['stats']['ranked']['wins'] - before['stats']['ranked']['wins']
+        d_loss  = player['stats']['ranked']['losses'] - before['stats']['ranked']['losses']
+        d_kill  = player['stats']['ranked']['kills'] - before['stats']['ranked']['kills']
+        d_death = player['stats']['ranked']['deaths'] - before['stats']['ranked']['deaths']
+        d_head  = player['stats']['overall']['headshots'] - before['stats']['overall']['headshots']
+        d_time  = int((player['stats']['ranked']['playtime'] - before['stats']['ranked']['playtime'])/60)
+    except:
+        print("KEY ERRER")
+        print(data)
+        return
  
     if d_time == 0:
         print("did not play game")
@@ -54,7 +63,7 @@ def Siege():
         except:
             pass
         try:
-            text += "HeadShot : " + str( (headshots/d_kill)*100 ) + "\n"
+            text += "HeadShot : " + str( int(headshots/d_kill)*100 ) + "\n"
         except:
             pass
         text += "PlayTime : " + str(d_time) + "\n"

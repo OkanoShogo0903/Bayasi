@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
-from requests_oauthlib import OAuth1Session
 import sys
-sys.path.append("C:\\Users\\okano\\Anaconda3\\Lib\\site-packages")
-# C:\Users\okano\Anaconda3\Lib\site-packages
 from datetime import datetime
+from requests_oauthlib import OAuth1Session
 import locale
-import wave
 import time
 import threading
 import random
@@ -41,13 +38,16 @@ def tweet(hoge):
     global url
     global twitter
     params = {"status": hoge}
-    req = twitter.post(url, params = params)
+    try:
+        req = twitter.post(url, params = params)
+        # レスポンスを確認
+        if req.status_code == 200:
+            print ('OK: {0}'.format(hoge))
+        else:
+            print ("Error: %d" % req.status_code)
 
-    # レスポンスを確認
-    if req.status_code == 200:
-        print ('OK: {0}'.format(hoge))
-    else:
-        print ("Error: %d" % req.status_code)
+    except:
+        print("--- TWEET POST ERRER ---")
 
 def bot_timer():
     b = datetime.now()
