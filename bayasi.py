@@ -12,13 +12,14 @@ print (datetime.now().strftime("%Y/%m/%d %H:%M:%S"))
 print ("\n")
 text = ["しーじ",
 "シージ（小声）",
-"シージすっか！",
-"シージすっぞ",
+"ぶりぶりぶり〜(喜)",
+"シーチキンシーフード",
+"PUPGすっか！",
+"しーじ（怒）",
 "シージするかー",
 "シージするらしーじ",
 "はいはいみなさん、シージしますよー",
-"バルキリーアイどこけ？",
-"ばやシージ",
+"ヴァルキリーアイどこけ？",
 "５人でできるゲームか～、５人でできるゲームっていったら一体なんやろなー"
 #"公式URL"
 ]
@@ -52,7 +53,7 @@ def tweet(hoge):
 def bot_timer():
     b = datetime.now()
 #    if(b.minute%10 == 0): # x分ごとの時報
-    if(b.minute == 0): # 一時間ごとの時報
+    if(b.hour >= 7 and b.minute == 0): # 一時間ごとの時報
         rand_int = random.randint(0,len(text)-1)
         tweet(text[rand_int])
     # 呼び出された後の処理

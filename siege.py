@@ -59,11 +59,12 @@ def Siege():
         
         text += "WIN : " + str(d_win) + " , LOSS : " + str(d_loss) + "\n"
         try:
-            text += "KD : " + str(d_kill/d_death) + "\n"
+            # 小数点以下0.01まで丸め込みする
+            text += "KD : " + str(round(d_kill/d_death),2) + "\n"
         except:
             pass
         try:
-            text += "HeadShot : " + str( int(headshots/d_kill)*100 ) + "\n"
+            text += "HeadShot : " + str( round(int(headshots/d_kill)*100 ), 2) + "\n"
         except:
             pass
         text += "PlayTime : " + str(d_time) + "\n"
